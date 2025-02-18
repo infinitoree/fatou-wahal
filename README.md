@@ -45,7 +45,7 @@ Le fichier de transcription doit être au format JSON et contenir une liste d'ob
         "text": "Dans cette vidéo, nous allons apprendre à utiliser Python."
     }
 ]
-
+```
  3. **Exécutez le script** :
    ```bash
    python extrat-all.py  
