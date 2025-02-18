@@ -15,20 +15,37 @@ Ce script permet d'extraire des segments audio à partir d'un fichier audio (par
 
 1. **Conversion de temps** : Le script commence par convertir les horaires des sous-titres, donnés en format `hh:mm:ss,SSS` (heures, minutes, secondes, millisecondes), en secondes.
 2. **Chargement de la transcription** : Le fichier JSON de transcription est chargé et chaque sous-titre est analysé pour en extraire les horaires de début et de fin.
-3. **Extraction des segments audio** : Pour chaque sous-titre, le script utilise FFmpeg pour extraire le segment audio correspondant du fichier audio, entre le temps de début et de fin. Chaque segment est sauvegardé en fichier `.wav`.
-4. **Mise à jour du fichier JSON** : Le chemin d'accès de chaque segment audio extrait est ajouté au fichier JSON de transcription sous la clé `audio_path`.
-5. **Organisation des fichiers** : Les segments audio extraits sont placés dans un sous-dossier du même nom que le fichier JSON, pour mieux organiser les fichiers.
+3. **Vérification du fichier audio** : Le fichier audio doit porter le même nom que le fichier JSON (en remplaçant `.json` par `.mp3`). Si aucun fichier audio correspondant n'est trouvé, le script ne pourra pas traiter les sous-titres.
+4. **Extraction des segments audio** : Pour chaque sous-titre, le script utilise FFmpeg pour extraire le segment audio correspondant du fichier audio, entre le temps de début et de fin. Chaque segment est sauvegardé en fichier `.wav`.
+5. **Mise à jour du fichier JSON** : Le chemin d'accès de chaque segment audio extrait est ajouté au fichier JSON de transcription sous la clé `audio_path`.
+6. **Organisation des fichiers** : Les segments audio extraits sont placés dans un sous-dossier du même nom que le fichier JSON, pour mieux organiser les fichiers.
 
-## Installation et Exécution
+## Structure des fichiers d'entrée et nomenclature
 
-### 1. Installation de FFmpeg
+### 1. Fichier de transcription JSON
 
-Assurez-vous que [FFmpeg](https://ffmpeg.org/download.html) est installé sur votre machine et accessible via le terminal ou la ligne de commande.
+Le fichier de transcription doit être au format JSON et contenir une liste d'objets avec les clés suivantes :
 
-### 2. Utilisation du Script
+- `start` : L'heure de début du sous-titre au format `hh:mm:ss,SSS` (par exemple, `00:00:01,000`).
+- `end` : L'heure de fin du sous-titre au format `hh:mm:ss,SSS` (par exemple, `00:00:10,000`).
+- `text` : Le texte du sous-titre.
 
-1. **Préparez votre fichier JSON de transcription** : Ce fichier doit être au format JSON, avec des objets contenant les clés `start` et `end` représentant les horaires des sous-titres.
-2. **Placez le fichier audio** : Assurez-vous que le fichier audio (par exemple, `audio.mp3`) est présent dans le même répertoire que le script ou modifiez le chemin dans le script.
-3. **Exécutez le script** :
+**Exemple de fichier JSON :**
+
+```json
+[
+    {
+        "start": "00:00:01,000",
+        "end": "00:00:10,000",
+        "text": "Bonjour, bienvenue à ce tutoriel."
+    },
+    {
+        "start": "00:00:12,000",
+        "end": "00:00:20,000",
+        "text": "Dans cette vidéo, nous allons apprendre à utiliser Python."
+    }
+]
+
+ **Exécutez le script** :
    ```bash
    python extrat-all.py  
