@@ -46,6 +46,6 @@ Le fichier de transcription doit être au format JSON et contenir une liste d'ob
     }
 ]
 
- **Exécutez le script** :
+ 3. **Exécutez le script** :
    ```bash
    python extrat-all.py  
