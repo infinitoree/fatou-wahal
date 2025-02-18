@@ -16,7 +16,7 @@ Ce script permet d'extraire des segments audio à partir d'un fichier audio (par
 1. **Conversion de temps** : Le script commence par convertir les horaires des sous-titres, donnés en format `hh:mm:ss,SSS` (heures, minutes, secondes, millisecondes), en secondes.
 2. **Chargement de la transcription** : Le fichier JSON de transcription est chargé et chaque sous-titre est analysé pour en extraire les horaires de début et de fin.
 3. **Vérification du fichier audio** : Le fichier audio doit porter le même nom que le fichier JSON (en remplaçant `.json` par `.mp3`). Si aucun fichier audio correspondant n'est trouvé, le script ne pourra pas traiter les sous-titres.
-4. **Extraction des segments audio** : Pour chaque sous-titre, le script utilise FFmpeg pour extraire le segment audio correspondant du fichier audio, entre le temps de début et de fin. Chaque segment est sauvegardé en fichier `.wav`.
+4. **Extraction des segments audio** : Pour chaque sous-titre, le script utilise FFmpeg pour extraire le segment audio correspondant du fichier audio, entre le temps de début et de fin. Chaque segment est sauvegardé en fichier `.mp3`.
 5. **Mise à jour du fichier JSON** : Le chemin d'accès de chaque segment audio extrait est ajouté au fichier JSON de transcription sous la clé `audio_path`.
 6. **Organisation des fichiers** : Les segments audio extraits sont placés dans un sous-dossier du même nom que le fichier JSON, pour mieux organiser les fichiers.
 
